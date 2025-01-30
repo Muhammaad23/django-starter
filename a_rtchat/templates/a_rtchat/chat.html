@@ -17,11 +17,25 @@
 
         <div class="sticky bottom-0 z-10 p-2 bg-gray-800">
             <div class="flex items-center rounded-xl px-2 py-2">
-                <form id="chat_message_form" method='POST' class="w-full" hx-post="{% url 'home' %}" hx-target="#chat_message" hx-swap="beforeend"
-                 ="on htmx:afterRequest reset() me">
+<!--                <form id="chat_message_form" method='POST' class="w-full" hx-post="{% url 'home' %}" hx-target="#chat_message" hx-swap="beforeend"-->
+<!--                 ="on htmx:afterRequest reset() me">-->
+<!--                    {% csrf_token %}-->
+<!--                    {{ form }}-->
+<!--                </form>-->
+                <form id="chat_message_form" method="POST"
+                    hx-post="{% url 'home' %}"
+                    hx-target="#chat_messages"
+                    hx-swap="beforeend"
+                    hx-on::afterRequest="this.reset()">
                     {% csrf_token %}
                     {{ form }}
                 </form>
+<script>
+    document.body.addEventListener('htmx:afterRequest', function(event) {
+        document.getElementById("chat_message_form").reset();
+    });
+</script>
+
             </div>
         </div>
     </div>

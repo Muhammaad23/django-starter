@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'a_users',
     'a_rtchat',
     'a_core.settings',
+    'drf_yasg',
 ]
 
 SITE_ID = 1
